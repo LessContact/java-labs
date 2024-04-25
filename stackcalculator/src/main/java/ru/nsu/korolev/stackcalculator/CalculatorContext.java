@@ -12,7 +12,7 @@ public class CalculatorContext {
     private final Map<String, Double> parameters;
     private final Stack<Double> stack;
     private final PrintStream outputStream;
-    private     FileWriter m_OutputFileWriter;
+    private FileWriter OutputFileWriter;
     private static final String realRegex = "[0-9]+[.]?[0-9]*";
 
     public CalculatorContext() {
@@ -27,7 +27,7 @@ public class CalculatorContext {
 
     public double popValue()  {
         if(stack.empty()){
-            LogManager.getLogger(CalculatorContext.class).error("Stack is empty");
+            LogManager.getLogger(CalculatorContext.class).warn("Stack is empty");
             throw new RuntimeException("Stack was empty when asked to pop");
         }
         return stack.pop();
@@ -63,10 +63,10 @@ public class CalculatorContext {
     }
 
     public Double addParameter(String name, Double value) {
-        if(name.matches(realRegex)){
-            LogManager.getLogger(CalculatorContext.class).error("Variable name can not be a number, that doesn't make sense, man");
-            throw new RuntimeException("Variable was attempted to make a name with number");
-        }
+//        if(name.matches(realRegex)){
+//            LogManager.getLogger(CalculatorContext.class).error("Variable name can not be a number, that doesn't make sense, man");
+//            throw new RuntimeException("Variable was attempted to make a name with number");
+//        }
         if(parameters.containsKey(name)){
             LogManager.getLogger(CalculatorContext.class).warn("Variable {} was overwritten with {}", name, value);
         }

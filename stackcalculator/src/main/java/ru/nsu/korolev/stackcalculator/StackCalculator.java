@@ -6,8 +6,12 @@ import org.apache.logging.log4j.Logger;
 import ru.nsu.korolev.stackcalculator.commands.Command;
 import ru.nsu.korolev.stackcalculator.commands.CommandFactory;
 import ru.nsu.korolev.stackcalculator.commands.CommandParser;
+import ru.nsu.korolev.stackcalculator.commands.exceptions.CommandExecuteException;
+import ru.nsu.korolev.stackcalculator.commands.exceptions.UnknownCommandException;
+import ru.nsu.korolev.stackcalculator.commands.exceptions.WrongArgsException;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 public class StackCalculator {
     private static final Logger logger = LogManager.getLogger(StackCalculator.class);
@@ -19,7 +23,9 @@ public class StackCalculator {
         context = new CalculatorContext();
 
         Options cliOptions = new Options();
-        cliOptions.addOption("i", "input", true, "commands input file path");
+        CLIOption = Option.builder().option("i").longOpt("input").hasArg().desc("commands input file path").build();
+//        cliOptions.addOption("i", "input", true, "commands input file path");
+        cliOptions.addOption(CLIOption);
         CommandLineParser parser = new DefaultParser();
         try {
             instructionFile = parser.parse(cliOptions, args);
@@ -49,7 +55,10 @@ public class StackCalculator {
                 Command command = factory.create(commandData.get());
                 command.execute(context);
             }
-            catch (CommandExecuteException | WrongArgumentsException | UnknownCommandException e){
+            catch (WrongArgsException | UnknownCommandException e){
+                logger.warn(e.getMessage());
+            }
+            catch (CommandExecuteException e){
                 logger.error(e.getMessage());
             }
         }

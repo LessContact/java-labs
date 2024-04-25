@@ -29,3 +29,15 @@ jar {
         attributes "Main-Class": "ru.nsu.korolev.stackcalculator.Main"
     }
 }
+
+//ext {
+//    resDir = project.projectDir // Set the base directory to the project's root directory by default
+//}
+
+//sourceSets {
+//    main {
+//        resources {
+//            resDir = [resDir] // Set the base directory for resources to baseDir
+//        }
+//    }
+//}
