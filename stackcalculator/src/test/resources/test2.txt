@@ -1,0 +1,7 @@
+define a 2
+push a
+push a
+push a
+*
++
+print

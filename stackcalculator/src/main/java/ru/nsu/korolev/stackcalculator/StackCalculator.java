@@ -15,8 +15,8 @@ import java.util.Optional;
 
 public class StackCalculator {
     private static final Logger logger = LogManager.getLogger(StackCalculator.class);
-    private final CalculatorContext context;
     private final CommandLine instructionFile;
+    public final CalculatorContext context;
     Option CLIOption;
 
     public StackCalculator(String[] args) {

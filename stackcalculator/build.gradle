@@ -30,6 +30,8 @@ jar {
     }
 }
 
+//gradle test;
+
 //ext {
 //    resDir = project.projectDir // Set the base directory to the project's root directory by default
 //}

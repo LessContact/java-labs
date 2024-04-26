@@ -1,0 +1,3 @@
+define a 100000
+push a
+pop

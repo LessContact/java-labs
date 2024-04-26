@@ -1,0 +1,7 @@
+define a 5
+define b 10
+push a
+push b
+-
+push a
+/
