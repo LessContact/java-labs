@@ -24,7 +24,6 @@ public class StackCalculator {
 
         Options cliOptions = new Options();
         CLIOption = Option.builder().option("i").longOpt("input").hasArg().desc("commands input file path").build();
-//        cliOptions.addOption("i", "input", true, "commands input file path");
         cliOptions.addOption(CLIOption);
         CommandLineParser parser = new DefaultParser();
         try {

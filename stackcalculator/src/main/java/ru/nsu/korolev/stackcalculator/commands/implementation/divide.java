@@ -11,6 +11,9 @@ public class divide extends Command {
     public divide(CommandParser.Data commandData) {
         super(commandData.CommandText(), commandData.line());
     }
+    public divide(){
+        super();
+    }
 
     @Override
     public void execute(CalculatorContext context) throws CommandExecuteException {

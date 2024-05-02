@@ -11,6 +11,9 @@ public class sqrt extends Command {
     public sqrt(CommandParser.Data commandData) {
         super(commandData.CommandText(), commandData.line());
     }
+    public sqrt() {
+        super();
+    }
 
     @Override
     public void execute(CalculatorContext context) throws CommandExecuteException {

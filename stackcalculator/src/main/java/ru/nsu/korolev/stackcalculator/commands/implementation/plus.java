@@ -11,6 +11,9 @@ public class plus extends Command {
     public plus(CommandParser.Data commandData) {
         super(commandData.CommandText(), commandData.line());
     }
+    public plus(){
+        super();
+    }
 
     @Override
     public void execute(CalculatorContext context) throws CommandExecuteException {

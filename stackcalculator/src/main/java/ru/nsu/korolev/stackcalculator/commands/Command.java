@@ -10,6 +10,10 @@ public abstract class Command {
         this.CommandText = CommandText;
         this.lineNumber = lineNumber;
     }
+    public Command(){
+        this.CommandText = "";
+        this.lineNumber = -1;
+    }
 
     protected String getCommandText() {
         return CommandText;

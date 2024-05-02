@@ -10,6 +10,9 @@ public class pop extends Command {
     public pop(CommandParser.Data commandData) {
         super(commandData.CommandText(), commandData.line());
     }
+    public pop(){
+        super();
+    }
 
     @Override
     public void execute(CalculatorContext context) throws CommandExecuteException {

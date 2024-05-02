@@ -10,6 +10,9 @@ public class print extends Command {
     public print(CommandParser.Data commandData) {
         super(commandData.CommandText(), commandData.line());
     }
+    public print(){
+        super();
+    }
 
     @Override
     public void execute(CalculatorContext context) throws CommandExecuteException {

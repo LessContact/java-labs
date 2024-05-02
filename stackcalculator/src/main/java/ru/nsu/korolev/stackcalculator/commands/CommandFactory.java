@@ -1,5 +1,6 @@
 package ru.nsu.korolev.stackcalculator.commands;
 
+import ru.nsu.korolev.stackcalculator.commands.exceptions.CommandExecuteException;
 import ru.nsu.korolev.stackcalculator.commands.exceptions.UnknownCommandException;
 import ru.nsu.korolev.stackcalculator.commands.exceptions.WrongArgsException;
 
@@ -36,6 +37,9 @@ public class CommandFactory {
             Throwable constructorException = e.getTargetException();
             if (constructorException instanceof WrongArgsException) {
                 throw (WrongArgsException) constructorException;
+            }
+            if (constructorException instanceof CommandExecuteException) {
+                throw (CommandExecuteException) constructorException;
             }
             else throw new RuntimeException("Failed to create desired command class!", e);
         }

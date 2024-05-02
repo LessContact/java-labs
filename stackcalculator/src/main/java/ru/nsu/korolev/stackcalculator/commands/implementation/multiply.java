@@ -11,6 +11,9 @@ public class multiply extends Command {
     public multiply(CommandParser.Data commandData) {
         super(commandData.CommandText(), commandData.line());
     }
+    public multiply(){
+        super();
+    }
 
     @Override
     public void execute(CalculatorContext context) throws CommandExecuteException {

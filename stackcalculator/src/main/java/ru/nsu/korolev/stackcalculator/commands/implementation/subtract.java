@@ -11,6 +11,9 @@ public class subtract extends Command {
     public subtract(CommandParser.Data commandData) {
         super(commandData.CommandText(), commandData.line());
     }
+    public subtract(){
+        super();
+    }
 
     @Override
     public void execute(CalculatorContext context) throws CommandExecuteException {
