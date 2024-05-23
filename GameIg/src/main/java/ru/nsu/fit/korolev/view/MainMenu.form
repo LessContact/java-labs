@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.nsu.fit.korolev.view.MainMenu">
+  <grid id="27dc6" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="468" height="523"/>
+    </constraints>
+    <properties>
+      <doubleBuffered value="true"/>
+      <maximumSize width="1280" height="720"/>
+      <preferredSize width="296" height="324"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="7d0df" class="javax.swing.JButton" binding="PlayButton">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Play"/>
+        </properties>
+      </component>
+      <component id="50110" class="javax.swing.JButton" binding="button2">
+        <constraints>
+          <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="score"/>
+        </properties>
+      </component>
+      <hspacer id="34db9">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="d7655">
+        <constraints>
+          <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <component id="5681e" class="javax.swing.JButton" binding="exitButton" default-binding="true">
+        <constraints>
+          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-196626"/>
+          <foreground color="-64768"/>
+          <hideActionText value="false"/>
+          <icon value="button.png"/>
+          <text value="exit"/>
+        </properties>
+      </component>
+      <vspacer id="5fa92">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipady="50"/>
+        </constraints>
+      </vspacer>
+      <component id="896c2" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <doubleBuffered value="false"/>
+          <font name="Lucida Handwriting" style="0"/>
+          <icon value="logo_re.png"/>
+          <maximumSize width="100" height="100"/>
+          <minimumSize width="100" height="100"/>
+          <text value="Thats a game alright"/>
+        </properties>
+      </component>
+      <vspacer id="5f68d">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipady="20"/>
+        </constraints>
+      </vspacer>
+      <hspacer id="d356b">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipadx="50"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="cea06">
+        <constraints>
+          <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipadx="20"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="b7b5">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipady="20"/>
+        </constraints>
+      </vspacer>
+      <component id="8b2a" class="ru.nsu.fit.korolev.view.ImageButton" binding="imageButton1" custom-create="true" default-binding="true">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+      </component>
+    </children>
+  </grid>
+</form>
