@@ -120,19 +120,14 @@ public class GameModel {
         if(player.getView().getTranslateY() + player.getYvel() < field.getScene().getHeight()/2) {
 
             score += Math.max((int) -player.getYvel(), 0);
-//            for(Platform platform : platforms){
-//                platform.getView().setTranslateY(platformVel);
-//                checkVisibility(platform);
-//            }
-
 
             for (My_Platform platform : platforms) {
                 platform.getView().setTranslateY(platform.getView().getTranslateY() - player.getYvel());
                 checkVisibility(platform);
             }
             platforms.removeIf(element -> !element.isVisible());
-//            generatePlatforms(-player.getYvel() + player.getView().getTranslateY());
-            generatePlatforms(-player.getYvel());
+            generatePlatforms(-player.getYvel() + MIN_PLATFORM_GAP);
+//            generatePlatforms(-player.getYvel());
 
         }
 
