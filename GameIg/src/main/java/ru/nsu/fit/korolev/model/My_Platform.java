@@ -11,9 +11,10 @@ public class My_Platform extends Entity {
     @Setter
     public boolean broken;
 
-    My_Platform(Node view, boolean broken){
+    My_Platform(Node view, boolean broken, double x, double y){
         super(view);
         this.broken = broken;
-//        setVisible(true);
+        setXcoord(x);
+        setYcoord(y);
     }
 }

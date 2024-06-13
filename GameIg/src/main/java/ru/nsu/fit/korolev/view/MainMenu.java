@@ -19,6 +19,14 @@ public class MainMenu {
     @FXML
     private Button scoreButton;
     @FXML
+    private Button exitButton;
+    @FXML
+    private Button aboutButton;
+    @FXML
+    private Button aboutBackButton;
+    @FXML
+    private DialogPane dialogPane;
+    @FXML
     private AnchorPane anchorPane;
     @FXML
     private ImageView imageView;
@@ -31,4 +39,17 @@ public class MainMenu {
     private void ScoreButtonAction(ActionEvent event) throws IOException {
         GameController.getInstance().SetScoreBoardScene();
     }
+    @FXML
+    private void ExitButtonAction(ActionEvent event) throws IOException {
+        Platform.exit();
+    }
+    @FXML
+    private void AboutButtonAction(ActionEvent event) throws IOException {
+        dialogPane.setVisible(true);
+    }
+    @FXML
+    private void AboutBackButtonAction(ActionEvent event) throws IOException {
+        dialogPane.setVisible(false);
+    }
+
 }

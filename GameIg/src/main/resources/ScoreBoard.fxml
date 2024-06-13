@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.korolev.view.ScoreBoard">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.korolev.view.ScoreBoard">
    <children>
       <ToolBar prefHeight="30.0" prefWidth="600.0" style="-fx-background-image: url(../paper.jpg); -fx-background-size: cover;">
         <items>
@@ -16,5 +17,6 @@
             </Button>
         </items>
       </ToolBar>
+      <ListView fx:id="records" prefHeight="370.0" prefWidth="600.0" />
    </children>
 </VBox>

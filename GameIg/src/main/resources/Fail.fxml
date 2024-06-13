@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.korolev.view.Fail">
    <children>
       <AnchorPane prefHeight="401.0" prefWidth="600.0">
@@ -24,7 +23,7 @@
                   <Font name="Book Antiqua" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="name" layoutX="226.0" layoutY="225.0" />
+            <TextField fx:id="name" layoutX="226.0" layoutY="225.0" promptText="Username" />
             <Text layoutX="116.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your name to submit a score" wrappingWidth="99.5687255859375" />
             <Button fx:id="submit" defaultButton="true" layoutX="394.0" layoutY="212.0" mnemonicParsing="false" onAction="#submitButtonAction" prefHeight="5.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-background-image: url(button.png); -fx-background-size: contain; -fx-background-position: center; -fx-background-repeat: no-repeat;" text="Submit">
                <font>
