@@ -1,5 +1,6 @@
 package ru.nsu.fit.korolev.model;
 
+import javafx.geometry.Bounds;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -17,9 +18,10 @@ public class GameModel {
     public ArrayList<My_Platform> platforms;
     private Pane field;
 
-    private Label score;
+    private Label scoreLabel;
     @Getter
     private Player player;
+    private Integer score = 0;
 
     //    private static final double MAX_JUMP_HEIGHT = Player.SpeedAddOnJump * Player.SpeedAddOnJump /(2 * Player.Yacc); // maximum jump height
 //    private static final int START_NUM_PLATFORMS = 50;
@@ -32,10 +34,10 @@ public class GameModel {
     private Image playerImage = new Image("player.png");
 
     //    public GameModel(Node pane) {
-    public GameModel(Pane field, Label score, Player player) {
+    public GameModel(Pane field, Label scoreLabel, Player player) {
         platforms = new ArrayList<>();
         this.field = field;
-        this.score = score;
+        this.scoreLabel = scoreLabel;
 
         double startYPos = field.getHeight(); // Start at the bottom of the screen
 
@@ -60,14 +62,14 @@ public class GameModel {
 
     private void generatePlatforms(double startYPos) {
         double currentYPosition = startYPos;
+        if (!platforms.isEmpty() && startYPos > platforms.getLast().getView().getTranslateY()){
+            return;
+        }
         ArrayList<My_Platform> platforms = new ArrayList<>();
-//        ArrayBlockingQueue<Platform> platforms = new ArrayBlockingQueue<Platform>(10000);
 
-//        for (int i = 0; i < numPlatforms; ++i) {
-        int i = 0;
         while(currentYPosition > 0){
             double platformXPosition = (rand.nextInt((int)field.getBoundsInParent().getWidth()) * (My_Platform.WIDTH + getRandomGap())) % (field.getBoundsInParent().getWidth());
-            boolean isBroken = rand.nextDouble() > 0.75;
+            boolean isBroken = rand.nextDouble() > 0.9;
             Rectangle rect = new Rectangle(platformXPosition, currentYPosition, My_Platform.WIDTH, My_Platform.HEIGHT);
 
             if(isBroken){
@@ -80,7 +82,7 @@ public class GameModel {
                 platforms.add(new My_Platform(rect, isBroken));
                 currentYPosition -= My_Platform.HEIGHT + getRandomGap();
             }
-            i++;
+
         }
         for (My_Platform platform : platforms) {
             field.getChildren().add(platform.getView());
@@ -89,7 +91,11 @@ public class GameModel {
     }
 
     private void checkVisibility(Entity entity){
-        boolean isVisible = entity.getView().getBoundsInParent().intersects(field.getBoundsInParent());
+//        boolean isVisible = entity.getView().getBoundsInParent().intersects(field.getBoundsInParent());
+        Bounds entityBounds = entity.getView().getBoundsInParent();
+        Bounds paneBounds = field.getBoundsInLocal();
+        boolean isVisible = paneBounds.contains(entityBounds);
+
         if(!isVisible){
             field.getChildren().remove(entity.getView());
             entity.setVisible(false);
@@ -106,17 +112,18 @@ public class GameModel {
             if(player.getYvel() > 0 && player.isColliding(platform) && !platform.broken){
                 player.setYvel(Player.SpeedSetOnJump);
                 break;
-            }else if(platform.broken){
+            }else if(player.getYvel() > 0 && player.isColliding(platform) && platform.broken){
                 field.getChildren().remove(platform.getView());
                 platform.setVisible(false);
             }
         }
 
         player.updateVelocity();
-        double platformVel = field.getScene().getHeight()/2 - player.getYvel() - player.getView().getTranslateY();
+//        double platformVel = field.getScene().getHeight()/2 - player.getYvel() - player.getView().getTranslateY();
 
         if(player.getView().getTranslateY() + player.getYvel() < field.getScene().getHeight()/2) {
 
+            score += Math.max((int) -player.getYvel(), 0);
 //            for(Platform platform : platforms){
 //                platform.getView().setTranslateY(platformVel);
 //                checkVisibility(platform);
@@ -128,8 +135,8 @@ public class GameModel {
                 checkVisibility(platform);
             }
             platforms.removeIf(element -> !element.isVisible());
+//            generatePlatforms(-player.getYvel() + player.getView().getTranslateY());
             generatePlatforms(-player.getYvel());
-//            generatePlatforms(player.getYvel());
 
         }
 
@@ -139,6 +146,11 @@ public class GameModel {
             GameController.getInstance().setStopped(true);
             GameController.getInstance().SetFailScene();
         }
+
+
+        //temp
+
+        scoreLabel.setText(score.toString());
 
     }
 

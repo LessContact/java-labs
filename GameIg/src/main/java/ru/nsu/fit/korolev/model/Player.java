@@ -26,8 +26,9 @@ public class Player extends Entity{
     public void update(){
         double newX = ((getView().getTranslateX() + getXvel()) % (getView().getScene().getWidth() - PLAYER_WIDTH));
         if(newX < 0) newX = getView().getScene().getWidth() - PLAYER_WIDTH;
-        double newY = getView().getTranslateY() + getYvel();
         getView().setTranslateX(newX);
+
+        double newY = getView().getTranslateY() + getYvel();
         if(newY < getView().getScene().getHeight()/2){
         }
         else getView().setTranslateY(newY);
