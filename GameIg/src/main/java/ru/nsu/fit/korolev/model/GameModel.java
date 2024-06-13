@@ -91,17 +91,13 @@ public class GameModel {
     }
 
     private void checkVisibility(Entity entity){
-//        boolean isVisible = entity.getView().getBoundsInParent().intersects(field.getBoundsInParent());
-        Bounds entityBounds = entity.getView().getBoundsInParent();
-        Bounds paneBounds = field.getBoundsInLocal();
-        boolean isVisible = paneBounds.contains(entityBounds);
+
+        boolean isVisible = entity.getView().getBoundsInParent().intersects(field.getLayoutBounds())
+                || field.getLayoutBounds().contains(entity.getView().getBoundsInParent());
 
         if(!isVisible){
             field.getChildren().remove(entity.getView());
             entity.setVisible(false);
-//            if(entity instanceof My_Platform){
-//                platforms.remove((My_Platform) entity);
-//            }
         }
     }
 
