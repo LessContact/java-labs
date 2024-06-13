@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 group = 'ru.nsu.fit.korolev'
@@ -9,9 +11,15 @@ repositories {
     mavenCentral()
 }
 
+javafx {
+    version = "22.0.1"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.base' ]
+}
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+//    testImplementation platform('org.junit:junit-bom:5.10.0')
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
+//    implementation 'org.openjfx:javafx-graphics:22.0.1:winRuntime'
 
     compileOnly 'org.projectlombok:lombok:1.18.32'
     annotationProcessor 'org.projectlombok:lombok:1.18.32'
@@ -22,4 +30,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "ru.nsu.korolev.Main"
+    }
 }
