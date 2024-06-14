@@ -26,14 +26,7 @@ public class Player extends Entity{
     }
     @Override
     public void update(){
-//        double newX = ((getView().getTranslateX() + getXvel()) % (getView().getScene().getWidth() - PLAYER_HITBOX_WIDTH));
-//        if(newX < 0) newX = getView().getScene().getWidth() - PLAYER_HITBOX_WIDTH;
-//        getView().setTranslateX(newX);
-//
-//        double newY = getView().getTranslateY() + getYvel();
-//        if(newY < getView().getScene().getHeight()/2){
-//        }
-//        else getView().setTranslateY(newY);
+
         double newX = ((getXcoord() + getXvel()) % (getView().getScene().getWidth() - PLAYER_HITBOX_WIDTH));
         if(newX < 0) newX = getView().getScene().getWidth() - PLAYER_HITBOX_WIDTH;
         setXcoord(newX);

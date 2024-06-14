@@ -2,10 +2,12 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'ru.nsu.fit.korolev'
 version = '1.0-SNAPSHOT'
+project.setProperty("mainClassName", "ru.nsu.fit.korolev.Launcher")
 
 repositories {
     mavenCentral()
@@ -34,6 +36,8 @@ test {
 
 jar {
     manifest {
-        attributes "Main-Class": "ru.nsu.korolev.Main"
+        attributes "Main-Class": "ru.nsu.fit.korolev.Launcher"
+//        property 'mainClassName': "ru.nsu.korolev.Launcher"
+//        attributes "Class-Path": ""
     }
 }

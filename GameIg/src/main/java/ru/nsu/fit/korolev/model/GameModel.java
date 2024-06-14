@@ -114,8 +114,6 @@ public class GameModel {
 //    }
 
     public void update() throws IOException {
-//        System.out.println("coord: " + platforms.getLast().getYcoord());
-//        System.out.println("trans: " + platforms.getLast().getView().getTranslateY());
 
         for(My_Platform platform : platforms){
 
@@ -141,14 +139,6 @@ public class GameModel {
                     platform.setXcoord(platform.getXcoord() + 1);
                 }
             }
-//            else if (platform.getView().getLayoutX() > field.getWidth()){
-//                platform.setXvel(-platform.getXvel());
-//                platform.setXcoord(platform.getXcoord() + platform.getXvel());
-//            }
-//            else if(platform.getView().getLayoutX() < 0){
-//                platform.setXvel(-platform.getXvel());
-//                platform.setXcoord(platform.getXcoord() + platform.getXvel());
-//            }
         }
 
         player.updateVelocity();

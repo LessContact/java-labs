@@ -52,8 +52,6 @@ public class GameController extends Application {
         root = FXMLLoader.load(ClassLoader.getSystemResource("MainMenu.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-
     }
 
     public void SetGamePlayScene() throws IOException {
@@ -75,7 +73,7 @@ public class GameController extends Application {
                         FailHandle();
                     } else {
                         model.update();
-//                      view.update();
+//
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
