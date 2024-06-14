@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import lombok.Getter;
+import ru.nsu.fit.korolev.model.Entity;
 import ru.nsu.fit.korolev.model.My_Platform;
 import ru.nsu.fit.korolev.model.Player;
 
@@ -30,13 +31,42 @@ public class GameField implements Initializable {
         field.getChildren().add(playerSprite);
     }
 
+
+    public void checkVisibility(Entity entity){
+
+        boolean isVisible = entity.getView().getBoundsInParent().intersects(field.getLayoutBounds())
+                || field.getLayoutBounds().contains(entity.getView().getBoundsInParent());
+
+        if(!isVisible){
+            field.getChildren().remove(entity.getView());
+            entity.setVisible(false);
+        }
+    }
+
+    public void setScore(int score){
+        this.score.setText(Integer.toString(score));
+    }
+
+    public void addEntity(Entity entity){
+        field.getChildren().add(entity.getView());
+    }
+    public void removeEntity(Entity entity){
+        field.getChildren().remove(entity.getView());
+    }
+
+    public void positionPlayerHitbox(Player player){
+        player.getView().setTranslateX(player.getXcoord());
+        player.getView().setTranslateY(player.getYcoord());
+    }
+
     public void drawPlayer(Player player){
         playerSprite.setTranslateX(player.getView().getTranslateX());// + Player.PLAYER_HITBOX_HEIGHT);
         playerSprite.setTranslateY(player.getView().getTranslateY() - Player.PLAYER_SPRITE_SIZE + Player.PLAYER_HITBOX_HEIGHT);
     }
 
     public void drawPlatform(My_Platform platform){
-
+        platform.getView().setTranslateX(platform.getXcoord());
+        platform.getView().setTranslateY(platform.getYcoord());
     }
 
 }

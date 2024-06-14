@@ -72,73 +72,96 @@ public class GameModel {
         ArrayList<My_Platform> platforms = new ArrayList<>();
 
         while(currentYPosition > 0){
-            double platformXPosition = (rand.nextInt((int)field.getBoundsInParent().getWidth()) * (My_Platform.WIDTH + getRandomGap())) % (field.getBoundsInParent().getWidth());
+            double platformXPosition = ((rand.nextInt((int)field.getBoundsInParent().getWidth()) * (My_Platform.WIDTH + getRandomGap())) % (field.getBoundsInParent().getWidth()));// - (My_Platform.WIDTH/2);
             boolean isBroken = rand.nextDouble() > 0.9;
             Rectangle rect = new Rectangle(platformXPosition, currentYPosition, My_Platform.WIDTH, My_Platform.HEIGHT);
 
             if(isBroken && getScore() < 1200){
                 rect.setFill(new ImagePattern(platformBroken));
-                platforms.add(new My_Platform(rect, true, platformXPosition, currentYPosition));
+                platforms.add(new My_Platform(rect, true));
                 currentYPosition -= My_Platform.HEIGHT + 5;
             }
             else if(rand.nextDouble() > 0.5 && getScore() > 1000){
                 rect.setFill(new ImagePattern(platformMove));
-                platforms.add(new My_Platform(rect, false, platformXPosition, currentYPosition));
-                platforms.getLast().setXvel(0.33);
+                My_Platform newPlatform = new My_Platform(rect, false);
+                newPlatform.setXvel(0.33);
+                platforms.add(newPlatform);
                 currentYPosition -= My_Platform.HEIGHT + getRandomGap();
             }
             else{
                 rect.setFill(new ImagePattern(platformNorm));
-                platforms.add(new My_Platform(rect, false, platformXPosition, currentYPosition));
+                platforms.add(new My_Platform(rect, false));
                 currentYPosition -= My_Platform.HEIGHT + getRandomGap();
             }
 
         }
         for (My_Platform platform : platforms) {
-            field.getChildren().add(platform.getView());
+//            field.getChildren().add(platform.getView());
+            gameFieldScene.addEntity(platform);
         }
         this.platforms.addAll(platforms);
     }
 
-    private void checkVisibility(Entity entity){
-
-        boolean isVisible = entity.getView().getBoundsInParent().intersects(field.getLayoutBounds())
-                || field.getLayoutBounds().contains(entity.getView().getBoundsInParent());
-
-        if(!isVisible){
-            field.getChildren().remove(entity.getView());
-            entity.setVisible(false);
-        }
-    }
+//    private void checkVisibility(Entity entity){
+//
+//        boolean isVisible = entity.getView().getBoundsInParent().intersects(field.getLayoutBounds())
+//                || field.getLayoutBounds().contains(entity.getView().getBoundsInParent());
+//
+//        if(!isVisible){
+//            field.getChildren().remove(entity.getView());
+//            entity.setVisible(false);
+//        }
+//    }
 
     public void update() throws IOException {
+//        System.out.println("coord: " + platforms.getLast().getYcoord());
+//        System.out.println("trans: " + platforms.getLast().getView().getTranslateY());
 
         for(My_Platform platform : platforms){
 
             if(player.getYvel() > 0 && player.isColliding(platform) && !platform.broken){
-                player.setYvel(Player.SpeedSetOnJump);
+                player.setYvel(Player.SPEED_SET_ON_JUMP);
                 break;
             }else if(player.getYvel() > 0 && player.isColliding(platform) && platform.broken){
-                field.getChildren().remove(platform.getView());
+//                field.getChildren().remove(platform.getView());
+                gameFieldScene.removeEntity(platform);
                 platform.setVisible(false);
             }
 
             platform.update();
-            if(Math.abs(platform.getView().getTranslateX()) > 100){
+            if(Math.abs(platform.getXcoord()) > 100){
                 platform.setXvel(-platform.getXvel());
             }
+            else if (!field.getLayoutBounds().contains(platform.getView().getBoundsInParent())){
+                platform.setXvel(-platform.getXvel());
+                if(platform.getXcoord() > 0){
+                    platform.setXcoord(platform.getXcoord() - 1);
+                }
+                if(platform.getXcoord() < 0){
+                    platform.setXcoord(platform.getXcoord() + 1);
+                }
+            }
+//            else if (platform.getView().getLayoutX() > field.getWidth()){
+//                platform.setXvel(-platform.getXvel());
+//                platform.setXcoord(platform.getXcoord() + platform.getXvel());
+//            }
+//            else if(platform.getView().getLayoutX() < 0){
+//                platform.setXvel(-platform.getXvel());
+//                platform.setXcoord(platform.getXcoord() + platform.getXvel());
+//            }
         }
 
         player.updateVelocity();
 
-        if(player.getView().getTranslateY() + player.getYvel() < field.getScene().getHeight()/2) {
+        if(player.getYcoord() + player.getYvel() < field.getScene().getHeight()/2) {
 
             score += Math.max((int) -player.getYvel(), 0);
 
             for (My_Platform platform : platforms) {
-                platform.getView().setTranslateY(platform.getView().getTranslateY() - player.getYvel());
+//                platform.getView().setTranslateY(platform.getView().getTranslateY() - player.getYvel());
+                platform.setYcoord(platform.getYcoord() - player.getYvel());
 
-                checkVisibility(platform);
+                gameFieldScene.checkVisibility(platform);
             }
             platforms.removeIf(element -> !element.isVisible());
             generatePlatforms(-player.getYvel() + minPlatformGap);
@@ -147,15 +170,19 @@ public class GameModel {
         }
 
         player.update();
+        gameFieldScene.positionPlayerHitbox(player);
         gameFieldScene.drawPlayer(player);
+        for(My_Platform platform : platforms) {
+            gameFieldScene.drawPlatform(platform);
+        }
 
-        if(player.getView().getTranslateY() > field.getScene().getHeight()){
+        if(player.getYcoord() > field.getScene().getHeight()){
             GameController.getInstance().setStopped(true);
         }
 
         difficulty = Math.max(10.0 - (score / 200), 2.0);
         minPlatformGap = My_Platform.HEIGHT + Player.MAX_JUMP_HEIGHT / difficulty - 20;
-        maxPlatformGap = (Player.MAX_JUMP_HEIGHT - 80) / difficulty;
+        maxPlatformGap = (Player.MAX_JUMP_HEIGHT - 90) / difficulty;
 
         //temp
 

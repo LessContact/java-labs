@@ -14,7 +14,11 @@ public class My_Platform extends Entity {
     My_Platform(Node view, boolean broken, double x, double y){
         super(view);
         this.broken = broken;
-        setXcoord(x);
-        setYcoord(y);
+//        setXcoord(x);
+//        setYcoord(y);
+    }
+    My_Platform(Node view, boolean broken){
+        super(view);
+        this.broken = broken;
     }
 }

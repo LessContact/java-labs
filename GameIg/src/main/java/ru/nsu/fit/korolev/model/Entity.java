@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 public class Entity {
     private Node View;
-    private double Xcoord;
-    private double Ycoord;
+    private double Xcoord = 0;
+    private double Ycoord = 0;
 
     private double Xvel = 0;
     private double Yvel = 0;
@@ -21,8 +21,10 @@ public class Entity {
     }
 
     public void update(){
-        View.setTranslateX(View.getTranslateX() + Xvel);
-        View.setTranslateY(View.getTranslateY() + Yvel);
+//        View.setTranslateX(View.getTranslateX() + Xvel);
+//        View.setTranslateY(View.getTranslateY() + Yvel);
+        setXcoord(getXcoord() + Xvel);
+        setYcoord(getYcoord() + Yvel);
     }
     public void setVisible(boolean visibility){
         this.isVisible = visibility;
